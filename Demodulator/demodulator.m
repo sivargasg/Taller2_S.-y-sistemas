@@ -7,8 +7,8 @@ function demodulator(signal, fq, fs)
 
     baseSignal = filtered .* cosine;
     
-    result = lowpass(baseSignal, 7.5E3, fs); % Lowpass filter to remove high frequencies
-    result = result * 4; % Scale the result to [-1, 1] range, it was around [-0.25, 0.25]
+    result = lowpass(baseSignal, 15E3, fs); % Lowpass filter to remove high frequencies
+    result = result * 2; % Scale the result to [-1, 1] range, it was around [-0.5, 0.5]
     
     figure;
     plot(t, result);
