@@ -1,7 +1,17 @@
 addpath("Modulator\");
 
-Fs = 500E3; % Sampling frequency
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 fq = 70E3; % Frequency to tune
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+Fs = 500E3; % Sampling frequency
 
 
 %%% SIGNAL 1 %%%
