@@ -16,3 +16,6 @@ function modulated = modulator(signal, fc, fs)
     ylabel('Amplitud');
 
 end
+
+
+end
