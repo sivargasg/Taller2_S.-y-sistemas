@@ -1,42 +1,48 @@
-function bandpass(signal, fq, fs)
+function out = bandpass(signal, fq, fs)
     % fs : sampling frequency
     % fq : frequency to tune +- 7.5 kHz
+
+    % Return : Time signal with 1/2 of the input magnitude
+    
          
     N = length(signal); % size signal
-    fourier = fft(signal);
+    fourier = fftshift(fft(signal));
     fourier = fourier(:).'; % Make row vector
 
-
-    n = floor(N / 2) + 1; % size fourier
-
-    % Take half of the signal
-    fourier = fourier(1:n);
-
-    x = (0 : n - 1) * (fs/N);
-
-
+    x = (-N/2 : N/2 - 1) * (fs/N); % x axis, frequencies Hz
 
     figure;
-    plot(x, real(fourier));
-
+    plot(x, abs(fourier));
     xline(fq - 7.5E3, "--r");
     xline(fq + 7.5E3, "--r");
-
+    xline(-fq - 7.5E3, "--r");
+    xline(-fq + 7.5E3, "--r");
     title('Espectro en frecuencia', 'FontSize', 14, 'FontWeight', 'bold');
     xlabel('Frecuencia (Hz)', 'FontSize', 12);
-    ylabel('Parte real', 'FontSize', 12);
+    ylabel('Magnitud', 'FontSize', 12);
 
 
 
     % Apply a bandpass filter to the signal
-    bandpassFilter = (x >= (fq - 7.5E3)) & (x <= (fq + 7.5E3)); % Logic array
+    bandpassFilter = ((x >= (fq - 7.5E3)) & (x <= (fq + 7.5E3))) | ((-x >= (fq - 7.5E3)) & (-x <= (fq + 7.5E3))); % Logic array
     filteredSignal = fourier .* bandpassFilter;
 
     figure;
-    plot(x, real(filteredSignal));
-
+    plot(x, abs(filteredSignal));
     title('Señal Filtrada en el Dominio de la Frecuencia', 'FontSize', 14, 'FontWeight', 'bold');
     xlabel('Frecuencia (Hz)', 'FontSize', 12);
-    ylabel('Amplitud (parte real)', 'FontSize', 12);
+    ylabel('Magnitud', 'FontSize', 12);
+
+
+    % Transform the filtered signal back to the time domain
+    out = ifft(ifftshift(filteredSignal)); % undo fftshift and apply ifft
+    out = real(out); % Take the real part
+    
+    figure;
+    plot((-N/2 : N/2-1)/fs, out);
+    title('Señal Filtrada en el Dominio del Tiempo', 'FontSize', 14, 'FontWeight', 'bold');
+    xlabel('Tiempo (s)', 'FontSize', 12);
+    ylabel('Amplitud', 'FontSize', 12);
+
 
 end

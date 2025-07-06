@@ -1,13 +1,17 @@
 load("PruebaDemodulador.mat")
 addpath('Demodulator\');
 
-plot(TX);
-title('Señal de entrada', 'FontSize', 14, 'FontWeight', 'bold');
-xlabel('Muestra (500k Hz)', 'FontSize', 12);
-ylabel('Magnitud [-1,1]', 'FontSize', 12);
+fq = 70E3; % Frequency to demodulate
 
 fs = 500E3;   % Sampling frequency
 
+plot((0 : length(TX)-1)/fs, TX);
+title('Señal de entrada', 'FontSize', 14, 'FontWeight', 'bold');
+xlabel('Tiempo (s)', 'FontSize', 12);
+ylabel('Amplitud', 'FontSize', 12);
 
 
-bandpass(TX, 70E3, fs)
+
+
+
+demodulator(TX, fq, fs);
