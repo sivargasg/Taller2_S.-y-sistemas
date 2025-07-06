@@ -17,5 +17,3 @@ function modulated = modulator(signal, fc, fs)
 
 end
 
-
-end

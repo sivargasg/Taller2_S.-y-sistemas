@@ -3,7 +3,7 @@ function demodulator(signal, fq, fs)
     filtered = bandpass(signal, fq, fs);
 
     t = (0 : length(signal)-1)/fs;
-    cosine = cos( 2*pi*fq * t ); % Evaluate the carrier cosine (frequency fq) at the signal points (t)
+    cosine = cos( 2*pi*fq * t ).'; % Evaluate the carrier cosine (frequency fq) at the signal points (t)
 
     baseSignal = filtered .* cosine;
     

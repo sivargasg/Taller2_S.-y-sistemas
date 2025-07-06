@@ -36,5 +36,4 @@ function out = lowpass(signal, fq, fs)
     ylabel('Magnitud', 'FontSize', 12);
 
 
-
 end
