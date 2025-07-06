@@ -7,9 +7,9 @@ function out = bandpass(signal, fq, fs)
          
     N = length(signal); % size signal
     fourier = fftshift(fft(signal));
-    fourier = fourier(:).'; % Make row vector
 
     x = (-N/2 : N/2 - 1) * (fs/N); % x axis, frequencies Hz
+    x = x.'; % Make it a column vector
 
     figure;
     plot(x, abs(fourier));
