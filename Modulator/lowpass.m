@@ -22,18 +22,19 @@ function out = lowpass(signal, fq, fs)
     out = real(out); % Take the real part
 
     figure;
-    plot(x, abs(fourier));
-    xline(-7.5E3, "--r");
-    xline(7.5E3, "--r");
+    plot(x, abs(fourier), "Color", [0.6, 0.8, 0.6]);
+    xline(-fq, "--r");
+    xline(fq, "--r");
     title('Espectro en frecuencia', 'FontSize', 14, 'FontWeight', 'bold');
     xlabel('Frecuencia (Hz)', 'FontSize', 12);
     ylabel('Magnitud', 'FontSize', 12);
 
     figure;
-    plot(x, abs(filtered));
+    plot(x, abs(filtered), "color", [0.6, 0.8, 0.6]);
     title('Señal Filtrada en el Dominio de la Frecuencia', 'FontSize', 14, 'FontWeight', 'bold');
     xlabel('Frecuencia (Hz)', 'FontSize', 12);
     ylabel('Magnitud', 'FontSize', 12);
+
 
 
 end

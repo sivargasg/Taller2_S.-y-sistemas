@@ -1,6 +1,6 @@
 function out = bandpass(signal, fq, fs)
     % fs : sampling frequency
-    % fq : frequency to tune +- 7.5 kHz
+    % fq : frequency to tune +- 15 kHz
 
     % Return : Time signal with 1/2 of the input magnitude
     
@@ -13,10 +13,10 @@ function out = bandpass(signal, fq, fs)
 
     figure;
     plot(x, abs(fourier));
-    xline(fq - 7.5E3, "--r");
-    xline(fq + 7.5E3, "--r");
-    xline(-fq - 7.5E3, "--r");
-    xline(-fq + 7.5E3, "--r");
+    xline(fq - 15E3, "--r");
+    xline(fq + 15E3, "--r");
+    xline(-fq - 15E3, "--r");
+    xline(-fq + 15E3, "--r");
     title('Espectro en frecuencia', 'FontSize', 14, 'FontWeight', 'bold');
     xlabel('Frecuencia (Hz)', 'FontSize', 12);
     ylabel('Magnitud', 'FontSize', 12);
@@ -24,7 +24,7 @@ function out = bandpass(signal, fq, fs)
 
 
     % Apply a bandpass filter to the signal
-    bandpassFilter = ((x >= (fq - 7.5E3)) & (x <= (fq + 7.5E3))) | ((-x >= (fq - 7.5E3)) & (-x <= (fq + 7.5E3))); % Logic array
+    bandpassFilter = ((x >= (fq - 15E3)) & (x <= (fq + 15E3))) | ((-x >= (fq - 15E3)) & (-x <= (fq + 15E3))); % Logic array
     filteredSignal = fourier .* bandpassFilter;
 
     figure;
