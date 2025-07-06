@@ -11,7 +11,7 @@ function demodulator(signal, fq, fs)
     result = result * 2; % Scale the result to [-1, 1] range, it was around [-0.5, 0.5]
     
     figure;
-    plot(t, result);
+    plot(t, result, "Color", [0.4, 0.6, 1]);
     title('Salida', 'FontSize', 14, 'FontWeight', 'bold');
     xlabel('Tiempo (s)', 'FontSize', 12);
     ylabel('Magnitud', 'FontSize', 12);
