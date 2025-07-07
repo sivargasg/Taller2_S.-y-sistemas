@@ -1,4 +1,5 @@
 addpath("Modulator\");
+addpath("Demodulator\");
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
