@@ -2,6 +2,13 @@ function modulated = modulator(signal, fc, fs)
     % fc     : frecuencia de la portadora
     % fs     : frecuencia de muestreo
 
+    figure;
+    plot((0:length(signal)-1)/fs, signal, "color", [0.4, 0.7, 1]);
+    title('Audio original');
+    xlabel('Tiempo (s)');
+    ylabel('Amplitud');
+
+
     filtered = lowpass(signal, 15E3, fs);
 
     t = (0:length(filtered)-1) / fs;
